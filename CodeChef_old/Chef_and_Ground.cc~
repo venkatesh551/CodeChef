@@ -1,0 +1,17 @@
+#include <iostream>
+
+using namespace std;
+
+int main(void)
+{
+	int t;
+	cin >> t;
+	while (t-- > 0)
+	{
+		int n, m;
+		
+		cin >> n >> m;
+		for (int i = 0; i < n; ++i)
+	}
+	return 0;
+}
