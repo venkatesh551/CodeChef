@@ -10,26 +10,21 @@ def get_arrangement(clr_str):
     ch_map = defaultdict(int)
     for ch in clr_str:
         ch_map[ch] += 1
-    sorted_x = sorted(ch_map.items(), key=lambda t:t[1], reverse = True)
-    result = ""
-    cnt = 0
-    while len(sorted_x) > 1:
-        cur_str = ""
-        for ele in sorted_x:
-            cur_str += ele[0]
-        last_ele = sorted_x.pop()
-        while len(sorted_x) > 1 and sorted_x[-1][1] == last_ele[1]:
-            sorted_x.pop()
-        result += cur_str * (last_ele[1] - cnt)
-        cnt = last_ele[1]
-    diff = sorted_x[0][1]-cnt
-    if len(sorted_x) > 0 and  diff > 0:
-        if diff > 1:
+    sorted_list = sorted(ch_map.items(), key=lambda t:t[1], reverse = True)
+    inp_len = len(clr_str)
+    result = [None] * inp_len
+    pos = 0
+    for ele in sorted_list:
+        for _ in xrange(ele[1]):
+            result[pos] = ele[0]
+            pos += 2
+            if pos >= inp_len:
+                pos = 1
+    
+    for ind in xrange(1, inp_len):
+        if result[ind] == result[ind-1]:
             return -1
-        else:
-            result += sorted_x[0][0]
-    else:
-        return result
+    return "".join(result)
 
 
 def main():
